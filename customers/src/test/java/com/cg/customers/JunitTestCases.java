@@ -1,12 +1,15 @@
 package com.cg.customers;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import org.hamcrest.Matchers;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -47,19 +50,20 @@ public class JunitTestCases {
 	}
 	
 	@Test
-	public void testget() throws Exception {
+	
+	public void verifyGetOperation() throws Exception {
 		//String json = "{\"customerId\":\"122\",\"customerName\":\"Nyaah\",\"contactNumber\":\"986755\",\"emailId\":\"nyaah@gmail.com\",\"dateOfBirth\":\"22/4/1993\"}";
 		
 		mockMvc.perform(get("/customers")
 				.accept(MediaType.APPLICATION_JSON))
 				.andExpect(status().isOk())
-				.andExpect(jsonPath("$.customerId", Matchers.is(122)))
-				.andExpect(jsonPath("$.customerName", Matchers.is("Nyaah")))
+				.andExpect(jsonPath("$.*", Matchers.hasSize(5))).andDo(print());
+				/*.andExpect(jsonPath("$.customerName", Matchers.is("Nyaah")))
 				.andExpect(jsonPath("$.contactNumber", Matchers.is(986755)))
 				.andExpect(jsonPath("$.emailId", Matchers.is("nyaah@gmail.com")))
 				.andExpect(jsonPath("$.dateOfBirth", Matchers.is("22/4/1993")))
 				.andExpect(jsonPath("$.*", Matchers.hasSize(5)));
-		
+*/		
 	}
 	
 	
@@ -78,5 +82,13 @@ public class JunitTestCases {
 				.andExpect(jsonPath("$.dateOfBirth", Matchers.is("22/4/1993")))
 				.andExpect(jsonPath("$.*", Matchers.hasSize(5)));*/
 		
+	}
+	
+	
+	@Test
+	public void testDelete() throws Exception {
+		mockMvc.perform(delete("/customer/delete/112").accept(MediaType.APPLICATION_JSON))
+		.andExpect(jsonPath("$.status").value(200))
+		.andExpect(jsonPath("$.message").value("Record deleted successfully"));
 	}
 }

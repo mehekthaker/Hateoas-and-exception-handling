@@ -1,17 +1,15 @@
 package com.cg.customers.controller;
 
 
+import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
+import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
+
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.Link;
-import org.springframework.hateoas.Resource;
 import org.springframework.hateoas.Resources;
-import org.springframework.hateoas.mvc.ControllerLinkBuilder;
-
-import static org.springframework.hateoas.mvc.ControllerLinkBuilder.*;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -37,7 +35,7 @@ public class CustomerController {
 	}
 	
 	@RequestMapping(value="/customers", method=RequestMethod.GET, produces=MediaType.ALL_VALUE)
-	public Collection<Customer> viewAllCustomers() {
+	public List<Customer> viewAllCustomers() {
 		return service.viewAllCustomers();
 		
 	}
@@ -47,8 +45,8 @@ public class CustomerController {
 		service.updateCustomer(customer);
 	}
 	
-	@RequestMapping(value="/customer/delete", method=RequestMethod.DELETE)
-	public void deleteCustomer(int customerId) {
+	@RequestMapping(value="/customer/delete/{customerId}", method=RequestMethod.DELETE)
+	public void deleteCustomer(@PathVariable int customerId) {
 		service.deleteCustomer(customerId);
 		//return new ResponseEntity<String>("Deleted entity", new HttpHeaders(), HttpStatus.OK);
 	}
