@@ -17,8 +17,8 @@ public class ServiceImpl implements Service{
 	@Autowired
 	CustomerRepository repository;
 
-	public void addCustomer(Customer customer) {		
-		repository.save(customer);
+	public Customer addCustomer(Customer customer) {		
+		return repository.save(customer);
 	}
 
 	public List<Customer> viewAllCustomers() {
@@ -26,11 +26,12 @@ public class ServiceImpl implements Service{
 	}
 
 
-	public void updateCustomer(Customer customer) {
-		repository.save(customer);
+	public Customer updateCustomer(Customer customer) {
+		return repository.save(customer);
 	}
 
 	public void deleteCustomer(int customerId) {
+		System.out.println(repository.findById(customerId));
 		repository.deleteById(customerId);
 		
 	}
