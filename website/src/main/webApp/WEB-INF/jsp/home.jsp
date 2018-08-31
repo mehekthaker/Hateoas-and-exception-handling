@@ -14,6 +14,7 @@
 <table>
 	<tr><td><a href="/addCustomer">Add new Customer</a></td></tr>
 	<tr><td><a href="/viewAllCustomers">View All Customers</a></td></tr>
+	<tr><td><a href="/customer/{customerId}">View One Customers</a></td></tr>
 	<tr><td><a href="/updateCustomer">Update Customer</a></td></tr>
 	<tr><td><a href="/deleteCustomer">Delete Customer</a></td></tr>
 </table>

@@ -18,7 +18,7 @@ body {
 <body>
 <div align="center">
 <h1 class="color">Customers</h1>
-<h3>Welcome</h3> 
+<h2>Welcome!</h2> 
 </div>
 <div>
 <a href="home.jsp">Home</a>

@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>View All Customers</title>
 <style>body {
 	background-color: #7fffda;
 }</style>
@@ -14,19 +14,19 @@
 <div>
 	<jsp:include page="header.jsp"></jsp:include>
 </div>
-${customer}
+
 <div align="center">
 
 <h1>Account Holder List</h1>
-<jstl:if test="${customer != null }">
+<jstl:if test="${customers != null }">
 <table>
 <tr><th>Customer ID</th><th>Name</th><th>Date of Birth</th><th>Email ID</th><th>Contact</th></tr>
-<jstl:forEach items="${customer}" var="customer">
+<jstl:forEach items="${customers}" var="customer">
     <tr><td>${customer.customerId}</td><td>${customer.customerName}</td><td>${customer.dateOfBirth}</td><td>${customer.emailId}</td><td>${customer.contactNumber}</td></tr>
 </jstl:forEach>
 </table>
 </jstl:if>
-<jstl:if test="${customer == null}">
+<jstl:if test="${customers == null}">
 <h2>No customers found!</h2>
 </jstl:if>
 </div>
